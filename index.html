@@ -12,10 +12,12 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    
 </head>
 <body>
-
-   
 
      <!-- navbar section -->
     <nav class="navbar">
@@ -59,7 +61,7 @@
         <h2 class="section-title"><span>About</span> Me</h2>
         <div class="row">
             <div class="about-img">
-                <img src="img/professional-profile.png" alt="Daud Ibrahim Portfolio">
+                <img src="img/read.jpeg" alt="Daud Ibrahim Portfolio">
             </div>
             <div class="content">
                 <h3 class="text-gradient">The Journey</h3>
@@ -71,6 +73,12 @@
                     Sebagai penerima <strong>Outstanding Student Award</strong>, saya memiliki dedikasi tinggi dalam administrasi sistem Linux 
                     dan manajemen jaringan skala enterprise.
                 </p>
+
+                <div class="about-cta">
+                    <a href="#skills" class="btn-premium">
+                        Learn More <i data-feather="plus"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -79,7 +87,7 @@
 
     <!-- skills section -->
     <section id="skills" class="skills container">
-        <h2 class="section-title">Technical <span>Arsenal</span></h2>
+        <h2 class="section-title">Certifications <span>&achievements</span></h2>
         <div class="skills-container">
             <div class="skill-card glass-card">
                 <i data-feather="shield"></i>
@@ -97,16 +105,22 @@
                 <p>Bronze Certificate Winner at <strong>Cisco NetAcad Riders</strong> competition.</p>
             </div>
         </div>
+
+        <div class="skills-cta">
+            <a href="#projects" class="btn-premium">
+                Explore Full Roadmap <i data-feather="arrow-right"></i>
+            </a>
+        </div>
     </section>
     <!-- skills section ends -->
 
     <!-- projects section -->
     <section id="projects" class="projects container">
-        <h2 class="section-title">Featured <span>Projects</span></h2>
+        <h2 class="section-title" id="my">My <span>Projects</span></h2>
         <div class="projects-grid">
             <div class="project-card">
                 <div class="project-img">
-                    <img src="img/project-scholarseek.jpg" alt="ScholarSeek Platform">
+                    <img src="img/scholarSeek.png" alt="ScholarSeek Platform">
                 </div>
                 <div class="project-info">
                     <h3>ScholarSeek</h3>
@@ -120,7 +134,7 @@
             </div>
             <div class="project-card">
                 <div class="project-img">
-                    <img src="img/project-museau.jpg" alt="MuseauMS Laravel">
+                    <img src="img/museauMS.png" alt="MuseauMS Laravel">
                 </div>
                 <div class="project-info">
                     <h3>MuseauMS</h3>
@@ -134,7 +148,7 @@
             </div>
             <div class="project-card">
                 <div class="project-img">
-                    <img src="img/project-pustaka.jpg" alt="Pustaka Tech System">
+                    <img src="img/pustakatech.png" alt="Pustaka Tech System">
                 </div>
                 <div class="project-info">
                     <h3>Pustaka Tech</h3>
@@ -146,11 +160,17 @@
                 </div>
             </div>
         </div>
+
+        <div class="projects-cta">
+            <a href="https://github.com/daudibrahimdev" target="_blank" class="btn-premium">
+                Explore More Projects <i data-feather="external-link"></i>
+            </a>
+        </div>
     </section>
     <!-- projects section ends -->
 
     <!-- experience section -->
-    <section id="experience" class="about container" style="background: var(--bg-dark);">
+    <!-- <section id="experience" class="about container" style="background: var(--bg-dark);">
         <h2 class="section-title"><span>Leadership</span> & Experience</h2>
         <div class="row">
             <div class="content">
@@ -170,11 +190,11 @@
                 </ul>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- experience section ends -->
 
     <!-- piano section -->
-    <section id="piano" class="piano-section container">
+    <!-- <section id="piano" class="piano-section container">
         <h2 class="section-title">Piano <span>Corner</span></h2>
         <p style="text-align: center; font-size: 1.6rem; color: var(--text-muted); margin-bottom: 4rem;">
             Menunjukkan disiplin dan kreativitas melalui musik klasik.
@@ -187,7 +207,7 @@
                 <iframe src="https://www.youtube.com/embed/placeholder2" title="Piano Performance 2" allowfullscreen></iframe>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- piano section ends -->
 
     <!-- footer section -->
