@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Journey in Perspective | Daud Ibrahim</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="css/style.css" />
+    
+    <style>
+        /* --- EDITORIAL STYLING --- */
+        :root {
+            --font-serif: 'Lora', serif;
+            --font-sans: 'Poppins', sans-serif;
+            --essay-width: 800px;
+        }
+
+        body {
+            background-color: var(--bg-darker);
+            overflow-x: hidden;
+        }
+
+        /* Scrollytelling Containers */
+        .scene {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            visibility: hidden; /* Prevent flash before GSAP loads */
+        }
+
+        .scene-content {
+            position: relative;
+            z-index: 10;
+            max-width: var(--essay-width);
+            padding: 0 5%;
+            text-align: center;
+        }
+
+        /* Typography */
+        .essay-text {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            font-weight: 400;
+        }
+
+        .essay-text strong {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .caption {
+            font-family: var(--font-sans);
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        /* Parallax Layers */
+        .layer {
+            position: absolute;
+            will-change: transform;
+        }
+
+        .bg-element {
+            font-family: var(--font-sans);
+            font-size: 20vh;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.02);
+            white-space: nowrap;
+            z-index: 1;
+            user-select: none;
+        }
+
+        .visual-frame {
+            position: absolute;
+            width: 400px;
+            height: 500px;
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            z-index: 5;
+            opacity: 0.3;
+        }
+
+        .visual-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        /* Specific Scene Adjustments */
+        #scene-beginning .visual-frame { right: 10%; top: 20%; }
+        #scene-foundation .visual-frame { left: 5%; bottom: 10%; }
+        
+        /* Smooth Scroll Smoothing */
+        .scroll-container { width: 100%; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">Dau<span id="d1">d</span><span id="d2">d</span><span id="d3">d</span></a>
+        <div class="navbar-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#projects">Projects</a>
+        </div>
+        <div class="navbar-extra">
+            <a href="https://linkedin.com/in/daudibrahim" target="_blank"><i data-feather="linkedin"></i></a>
+            <a href="https://github.com/daudibrahimdev" target="_blank"><i data-feather="github"></i></a>
+        </div>
+    </nav>
+
+    <div class="scroll-container">
+        
+        <section class="scene" id="scene-beginning">
+            <div class="layer bg-element">THE BEGINNING</div>
+            <div class="visual-frame layer"><img src="img/smartphone-era.jpg" alt="Perspective"></div>
+            <div class="scene-content">
+                <span class="caption">2019 - 2021</span>
+                <p class="essay-text">
+                    The journey started with a <strong>smartphone</strong>. Without a laptop, I began exploring Termux and writing my first lines of HTML on a small screen. It was simply a matter of using the resources I had at the time.
+                </p>
+            </div>
+        </section>
+
+        <section class="scene" id="scene-foundation">
+            <div class="layer bg-element" style="right: 0;">FOUNDATION</div>
+            <div class="visual-frame layer"><img src="img/server-room.jpg" alt="Infrastructure"></div>
+            <div class="scene-content">
+                <span class="caption">SMK Cyber Media</span>
+                <p class="essay-text">
+                    At SMK Cyber Media, I studied <strong>Computer and Network Engineering</strong>. During an internship at a government agency, I assisted in server room maintenance and network troubleshooting, giving me my first look at physical infrastructure.
+                </p>
+            </div>
+        </section>
+
+        <section class="scene" id="scene-expansion">
+            <div class="layer bg-element">988 / 1000</div>
+            <div class="scene-content">
+                <span class="caption">Semester 3 & 4</span>
+                <p class="essay-text">
+                    Complexity grew into expansion. I obtained the <strong>Microsoft SC-900</strong> with a score of 988/1000 and was recognized as an outstanding student. This period marked the launch of <em>Foodventure</em> and my first ISBN-indexed book.
+                </p>
+            </div>
+        </section>
+
+        <section class="scene" id="scene-current">
+            <div class="layer bg-element">LINUX & CRYPTO</div>
+            <div class="scene-content">
+                <span class="caption">Present Day</span>
+                <p class="essay-text">
+                    My studies have since progressed into cryptography and <strong>Linux fundamentals</strong> through the Red Hat curriculum. Projects like ScholarSeek and MuseauMS were developed to bridge the gap between theory and application.
+                </p>
+            </div>
+        </section>
+
+        <section class="scene" id="scene-future">
+            <div class="scene-content">
+                <span class="caption">The Vision</span>
+                <p class="essay-text">
+                    My current path is directed toward <strong>cybersecurity</strong>. I intend to build a career in this field, moving forward with the same curiosity that began on that small screen years ago.
+                </p>
+                <div style="margin-top: 5rem;">
+                    <a href="index.html#projects" class="btn-premium">View Technical Portfolio</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="credit">
+            <p>Built with Precision by Daud Ibrahim. | &copy; 2026 <span>Aspiring SOC Analyst</span>.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+        feather.replace();
+
+        // Reveal body after GSAP is ready
+        gsap.set(".scene", { autoAlpha: 1 });
+
+        // Modular Scene Engine
+        const scenes = gsap.utils.toArray(".scene");
+        
+        scenes.forEach((scene, i) => {
+            const content = scene.querySelector(".scene-content");
+            const bgText = scene.querySelector(".bg-element");
+            const frame = scene.querySelector(".visual-frame");
+            
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: scene,
+                    start: "top top",
+                    end: "+=150%", // Panjang scroll per scene
+                    pin: true,
+                    scrub: 1,
+                    anticipatePin: 1
+                }
+            });
+
+            // Animasi Entrance
+            tl.from(content, { y: 100, opacity: 0, duration: 1 })
+              .from(bgText, { x: i % 2 === 0 ? -200 : 200, opacity: 0, duration: 1.5 }, "-=1")
+              .from(frame, { scale: 0.8, opacity: 0, rotation: i % 2 === 0 ? 5 : -5, duration: 1 }, "-=1");
+
+            // Animasi Exit (Subtle fade out as we move to next)
+            if (i < scenes.length - 1) {
+                tl.to(content, { y: -50, opacity: 0, duration: 0.5, delay: 0.5 });
+            }
+        });
+
+        // Parallax Subtle Follow (Mouse interaction optional)
+        document.addEventListener("mousemove", (e) => {
+            const xPos = (e.clientX / window.innerWidth - 0.5) * 20;
+            const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
+            
+            gsap.to(".visual-frame", {
+                x: xPos,
+                y: yPos,
+                duration: 2,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>
