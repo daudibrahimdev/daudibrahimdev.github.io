@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery Detail | Daud Ibrahim</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        /* --- INTERNAL CSS: GALLERY DETAIL --- */
+        :root {
+            --font-serif: 'Lora', serif;
+            --font-sans: 'Poppins', sans-serif;
+        }
+
+        .detail-page {
+            padding: 120px 7% 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Back Navigation */
+        .back-nav {
+            margin-bottom: 2rem;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-family: var(--font-sans);
+            transition: 0.3s;
+            opacity: 0; /* GSAP Init */
+            transform: translateX(-20px);
+        }
+        .btn-back:hover { color: var(--primary); transform: translateX(-5px); }
+
+        /* Media Container (Cinematic Area) */
+        .media-stage {
+            width: 100%;
+            background: #000;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            opacity: 0; /* GSAP Init */
+            transform: scale(0.98);
+        }
+
+        /* Responsive Aspect Ratio Handling */
+        .media-content {
+            width: 100%;
+            display: block;
+        }
+        
+        /* Khusus Iframe (Youtube) */
+        .aspect-video {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Ratio */
+            height: 0;
+        }
+        .aspect-video iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+
+        /* Khusus Image/Video Tag */
+        .media-fit {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Info Section */
+        .info-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0; /* GSAP Init */
+            transform: translateY(20px);
+        }
+
+        .info-category {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .info-title {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--text-main);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .info-date {
+            font-family: var(--font-sans);
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .info-desc {
+            font-family: var(--font-sans);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: left; /* Deskripsi enak dibaca rata kiri/justify */
+        }
+
+        /* Extra Gallery Grid */
+        .extra-gallery {
+            margin-top: 5rem;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 3rem;
+            opacity: 0; /* GSAP Init */
+        }
+        
+        .gallery-grid-small {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            height: 200px;
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .gallery-item:hover { transform: scale(1.02); border-color: var(--primary); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="navbar-logo">Dau<span id="d1">d</span><span id="d2">d</span><span id="d3">d</span></a>
+        <div class="navbar-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="projects.html">Projects</a>
+            <a href="beyond-tech.html" class="nav-segment active" style="color: var(--primary);">Beyond Tech</a>
+        </div>
+        <div class="navbar-extra">
+            <a href="#" target="_blank"><i data-feather="linkedin"></i></a>
+            <a href="#" target="_blank"><i data-feather="github"></i></a>
+        </div>
+    </nav>
+
+    <div class="detail-page" id="detail-container">
+        <p style="text-align:center; color: var(--text-dim);">Loading content...</p>
+    </div>
+
+    <footer>
+        <div class="credit">
+            <p>Built with Precision by Daud Ibrahim. | &copy; 2026 <span>Aspiring SOC Analyst</span>.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            const container = document.getElementById('detail-container');
+
+            if (!id) {
+                container.innerHTML = `<h2 style="color:red; text-align:center;">No Media ID Selected</h2>`;
+                return;
+            }
+
+            fetch('gallery.json')
+                .then(res => res.json())
+                .then(data => {
+                    const item = data.find(g => g.id === id);
+
+                    if (!item) {
+                        container.innerHTML = `<h2 style="color:var(--text-muted); text-align:center;">Media Not Found</h2>`;
+                        return;
+                    }
+
+                    // --- MEDIA SWITCHER LOGIC ---
+                    let mediaHTML = '';
+                    
+                    if (item.media_type === 'youtube') {
+                        // YouTube Embed
+                        mediaHTML = `
+                            <div class="aspect-video">
+                                <iframe src="${item.media_url}" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        `;
+                    } else if (item.media_type === 'mp4') {
+                        // HTML5 Video
+                        mediaHTML = `
+                            <video controls class="media-fit" poster="${item.thumbnail}">
+                                <source src="${item.media_url}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        `;
+                    } else {
+                        // Standard Image
+                        mediaHTML = `<img src="${item.media_url}" alt="${item.title}" class="media-fit">`;
+                    }
+
+                    // --- EXTRA GALLERY LOGIC ---
+                    let extraGalleryHTML = '';
+                    if (item.images && item.images.length > 0) {
+                        const imagesList = item.images.map(img => `
+                            <div class="gallery-item">
+                                <img src="${img}" alt="Extra shot">
+                            </div>
+                        `).join('');
+
+                        extraGalleryHTML = `
+                            <div class="extra-gallery">
+                                <h4 style="color:var(--text-dim); margin-bottom:1.5rem; text-align:center;">More Captures</h4>
+                                <div class="gallery-grid-small">
+                                    ${imagesList}
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    // --- INJECT HTML ---
+                    container.innerHTML = `
+                        <div class="back-nav">
+                            <a href="gallery.html" class="btn-back"><i data-feather="arrow-left"></i> Back to Gallery</a>
+                        </div>
+
+                        <div class="media-stage">
+                            ${mediaHTML}
+                        </div>
+
+                        <div class="info-wrapper">
+                            <span class="info-category">${item.category}</span>
+                            <h1 class="info-title">${item.title}</h1>
+                            <div class="info-date">
+                                <i data-feather="calendar" style="width:16px;"></i> ${item.date}
+                            </div>
+                            <div class="info-desc">
+                                ${item.description}
+                            </div>
+                        </div>
+
+                        ${extraGalleryHTML}
+                    `;
+
+                    feather.replace();
+                    runAnimations();
+                });
+        });
+
+        function runAnimations() {
+            const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+            tl.to(".btn-back", { x: 0, opacity: 1, duration: 0.5 })
+              .to(".media-stage", { scale: 1, opacity: 1, duration: 0.8 }, "-=0.2")
+              .to(".info-wrapper", { y: 0, opacity: 1, duration: 0.8 }, "-=0.4")
+              
+            // Kalau ada extra gallery, muncul terakhir
+            if(document.querySelector(".extra-gallery")) {
+                tl.to(".extra-gallery", { opacity: 1, duration: 0.8 }, "-=0.4");
+            }
+        }
+    </script>
+</body>
+</html>

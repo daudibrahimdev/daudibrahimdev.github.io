@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Journey in Perspective | Daud Ibrahim</title>
+    <title>Beyond Tech | Daud Ibrahim</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/style.css" />
     
     <style>
+        /* --- COPY OF ABOUT.HTML STYLING (STRICTLY PRESERVED) --- */
         :root {
             --font-serif: 'Lora', serif;
             --font-sans: 'Poppins', sans-serif;
@@ -30,13 +31,13 @@
         #intro-sequence {
             position: relative;
             width: 100%;
-            padding-bottom: 20vh;
+            /* Height dikurangi agar sesuai dengan kabel yang lebih pendek */
+            padding-bottom: 10vh; 
         }
 
-        /* Teks statis di atas sebelum garis */
         .intro-header {
             width: 100%;
-            height: 60vh; /* Memberi ruang napas sebelum kabel mulai */
+            height: 60vh; 
             display: flex;
             align-items: center;
             justify-content: center;
@@ -50,14 +51,14 @@
             font-weight: 400;
         }
 
-        /* Container kabel yang memanjang ke bawah secara fisik */
+        /* Container kabel (MODIFIED: HEIGHT LEBIH PENDEK) */
         .cable-wrapper {
             position: relative;
             width: 100%;
             display: flex;
             justify-content: center;
-            /* Tinggi disesuaikan ke 2500px agar Knot SVG proporsional */
-            height: 2500px; 
+            /* Height disesuaikan menjadi 1200px untuk path ekstrem pendek */
+            height: 1200px; 
         }
 
         .cable-container {
@@ -71,7 +72,6 @@
             width: 100%;
             height: 100%;
             display: block;
-            /* Drop shadow halus untuk kedalaman 3D */
             filter: drop-shadow(0px 0px 10px rgba(0, 242, 255, 0.1));
         }
 
@@ -138,6 +138,13 @@
         .frame-right { right: 8%; top: 15%; }
         .frame-left { left: 8%; bottom: 15%; }
 
+        /* Mobile Adjustments (Standard) */
+        @media (max-width: 768px) {
+            #intro-text { font-size: 3.5rem; }
+            .essay-text { font-size: 1.8rem; }
+            .visual-frame { width: 200px; height: 300px; opacity: 0.1; }
+            .bg-label { font-size: 10vh; }
+        }
     </style>
 </head>
 <body>
@@ -146,25 +153,25 @@
         <a href="index.html" class="navbar-logo">Dau<span id="d1">d</span><span id="d2">d</span><span id="d3">d</span></a>
         <div class="navbar-nav">
             <a href="index.html">Home</a>
-            <a href="about.html" class="nav-segment active" style="color: var(--primary);">About</a>
-            <a href="certifications.html">Certifications</a>
+            <a href="about.html">About</a>
+            <a href="index.html#skills">Skills</a>
             <a href="projects.html">Projects</a>
-            <a href="beyond-tech.html">Beyond Tech</a>
+            <a href="beyond-tech.html" class="nav-segment active" style="color: var(--primary);">Beyond Tech</a>
         </div>
         <div class="navbar-extra">
-            <a href="#" target="_blank"><i data-feather="linkedin"></i></a>
-            <a href="#" target="_blank"><i data-feather="github"></i></a>
+            <a href="https://linkedin.com/in/daudibrahim" target="_blank"><i data-feather="linkedin"></i></a>
+            <a href="https://github.com/daudibrahimdev" target="_blank"><i data-feather="github"></i></a>
         </div>
     </nav>
 
     <div id="intro-sequence">
         <div class="intro-header">
-            <h1 id="intro-text">About Me</h1>
+            <h1 id="intro-text">Beyond Tech</h1>
         </div>
         
         <div class="cable-wrapper">
             <div class="cable-container">
-                <svg class="cable-svg-curved" viewBox="0 0 200 2500" preserveAspectRatio="none">
+                <svg class="cable-svg-curved" viewBox="0 0 200 1200" preserveAspectRatio="none">
                     <defs>
                         <filter id="glow">
                             <feGaussianBlur stdDeviation="5" result="blur"/>
@@ -179,20 +186,20 @@
 
                     <path id="fiber-path-base" 
                           d="M 100 0 
-                             L 100 200
-                             C 100 450, 200 450, 200 750
-                             S 0 1050, 0 1350
-                             S 200 1650, 200 1950
-                             C 200 2250, 100 2250, 100 2500" 
+                             L 100 100
+                             C 100 200, 190 250, 190 350
+                             S 10 550, 10 650
+                             S 190 850, 190 950
+                             C 190 1050, 100 1100, 100 1200" 
                           fill="none" stroke="url(#cableGradient)" stroke-width="4" opacity="0.6" />
 
                     <path id="fiber-path-light" 
                           d="M 100 0 
-                             L 100 200
-                             C 100 450, 200 450, 200 750
-                             S 0 1050, 0 1350
-                             S 200 1650, 200 1950
-                             C 200 2250, 100 2250, 100 2500" 
+                             L 100 100
+                             C 100 200, 190 250, 190 350
+                             S 10 550, 10 650
+                             S 190 850, 190 950
+                             C 190 1050, 100 1100, 100 1200" 
                           fill="none" stroke="var(--primary)" stroke-width="3" filter="url(#glow)" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
             </div>
@@ -200,94 +207,76 @@
     </div>
 
     <div id="scrollytelling-main">
-        <section class="scene" id="scene-beginning">
-            <div class="bg-label">BEGINNING</div>
-            <div class="visual-frame frame-right"><img src="img/journey.png" alt="Mobile Exploration"></div>
+        
+        <section class="scene" id="scene-drums">
+            <div class="bg-label">FIRST HOBIES</div>
+            <div class="visual-frame frame-right"><img src="img/bt-drums.jpg" alt="Drums"></div>
             <div class="scene-content">
-                <span class="caption">The Early Curiosity</span>
+                <span class="caption">First encounter with music</span>
                 <p class="essay-text">
-                    The journey began when I was in middle school. I watched hacking videos by <strong>Max Cornelisse</strong>, and even though I knew they were staged, I still found them exciting and inspiring. Without access to a laptop, I started exploring Termux and wrote my first lines of HTML on my smartphone. It was simply about making the most of the resources I had at the time.
+                    When I was five, my parents took me to a mall where I saw a boy playing the drums.
+                    I remember standing there, completely absorbed.
+                    Something about that moment stayed with me and quietly sparked the desire to try.
                 </p>
             </div>
         </section>
 
-        <section class="scene" id="scene-foundation">
-            <div class="bg-label" style="right: 5%;">FOUNDATION</div>
-            <div class="visual-frame frame-left"><img src="img/internship.png" alt="Server Room"></div>
+        <section class="scene" id="scene-learning">
+            <div class="bg-label" style="right: 5%;">FIRST DRUM LESSON</div>
+            <div class="visual-frame frame-left"><img src="img/bt-drumsticks.jpg" alt="Learning"></div>
             <div class="scene-content">
-                <span class="caption">SMK Cyber Media & Internship</span>
+                <span class="caption">Learning, briefly</span>
                 <p class="essay-text">
-                    Driven by my enthusiasm for the cyber world and hacking, I enrolled in a <strong>Cyber Media Vocational High School</strong> and pursued Computer and Network Engineering. I focused on network fundamentals such as VLANs and basic connectivity, and completed an internship at a government agency, which became my first exposure to physical IT infrastructure, involving server room operations and basic enterprise-level troubleshooting.
+                    I began taking drum lessons soon after.
+                    They did not last very long.
+                    The studio eventually closed, and my parents were unable to find another place at the time.
+                    Even so, the interest in music never really disappeared.
                 </p>
             </div>
         </section>
 
-        <section class="scene" id="scene-expansion">
-            <div class="bg-label">988 / 1000</div>
-            <div class="visual-frame frame-right"><img src="img/smst3.png" alt="Certifications"></div>
+        <section class="scene" id="scene-chess">
+            <div class="bg-label">CHESS</div>
+            <div class="visual-frame frame-right"><img src="img/bt-chess.jpg" alt="Chess Game"></div>
             <div class="scene-content">
-                <span class="caption">Expansion of Scope</span>
+                <span class="caption">Discovering chess</span>
                 <p class="essay-text">
-                    As my studies progressed, I began standardizing my technical skills. I earned the <strong>Microsoft SC-900</strong> certification with a score of 988/1000. During this phase, I also developed my first game, Foodventure, and published my first ISBN-indexed book.
+                    Around the same period, I spent a lot of time with the chess game on Windows 7.
+                    At first I did not understand the rules, so my father taught me how each piece moved and how a game unfolds.
+                    Years later, I finally won a match against him.
+                    It was a small moment, yet it pushed me to take the game more seriously and join several competitions.
                 </p>
             </div>
         </section>
 
-        <section class="scene" id="scene-bem">
-            <div class="bg-label" style="left: 0;">BEM INVOLVEMENT</div>
-            <div class="visual-frame frame-left"><img src="img/bem.jpg" alt="BEM"></div>
+        <section class="scene" id="scene-guitar">
+            <div class="bg-label" style="left: 0;">GUITAR</div>
+            <div class="visual-frame frame-left"><img src="img/bt-guitar.jpg" alt="Classical Guitar"></div>
             <div class="scene-content">
-                <span class="caption">Semester 4: Organization</span>
+                <span class="caption">Returning to music</span>
                 <p class="essay-text">
-                    In my fourth semester, I became involved in the Student <strong> Representative Council (BEM).  </strong>My role focused on assisting with the implementation and coordination of various campus events. Through this experience, I became more aware of my own limitations and learned valuable lessons about teamwork, responsibility, and leadership.
+                    After some time away from instruments, music found its way back through the internet.
+                    I listened to players like <strong>Estas Tonne</strong> and <strong>Francisco Tárrega</strong>, and I kept returning to classical pieces.
+                    My mother bought me a classical guitar, and I began practicing during middle school.
                 </p>
             </div>
         </section>
 
-        <section class="scene" id="scene-club">
-            <div class="bg-label" style="right: 0;">PROGRAMMING CLUB</div>
-            <div class="visual-frame frame-right"><img src="img/clb_programming.jpeg" alt="Collaboration"></div>
-            <div class="scene-content">
-                <span class="caption">Semester 5: Collaboration</span>
-                <p class="essay-text">
-                    Currently, I am part of the <strong>Programming Club</strong>. This involvement allows me to share technical knowledge when needed and contribute to a collaborative learning environment alongside my peers.
-                </p>
-            </div>
-        </section>
-
-        <section class="scene" id="scene-award">
-            <div class="bg-label">FEBRUARY 2026</div>
-            <div class="visual-frame frame-left"><img src="img/awards.png" alt="Recognition"></div>
-            <div class="scene-content">
-                <span class="caption">Institutional Recognition</span>
-                <p class="essay-text">
-                    In February 2026, I received a <strong>Certificate of Appreciation</strong> from my university. This recognition was a meaningful milestone for me and further strengthened my motivation to study,to keep learning, and to continue pursuing new achievements — most importantly, to keep progressing.
-                </p>
-            </div>
-        </section>
-
-        <section class="scene" id="scene-focus">
-            <div class="bg-label">LINUX & CRYPTO</div>
-            <!-- <div class="visual-frame frame-right"><img src="img/linux-study.jpg" alt="Red Hat"></div> -->
-            <div class="scene-content">
-                <span class="caption">Current Technical Focus</span>
-                <p class="essay-text">
-                    My recent focus has shifted toward the field of <strong>cybersecurity</strong>, with a particular interest in blue team roles. I am currently strengthening my foundation in Linux fundamentals and cryptography, while also learning to work with SIEM tools and Endpoint Detection and Response (EDR) systems.
-                </p>
-            </div>
-        </section>
-
-        <section class="scene" id="scene-future">
+        <section class="scene" id="scene-cta">
             <div class="scene-content" style="text-align: center; margin: 0 auto;">
-                <span class="caption">The path forward</span>
+                <span class="caption">Returning to music</span>
                 <p class="essay-text" style="text-align: center;">
-                    My current direction is centered on <strong>cybersecurity</strong>. I intend to build a career in this field while maintaining the same curiosity that began years ago on a small smartphone screen.
+                    As I explored further, I became drawn to the Romantic era, especially Rachmaninoff.
+                    The richness of the piano parts encouraged me to start learning piano as well, a practice I continue today.
                 </p>
                 <div style="margin-top: 5rem;">
-                    <a href="index.html#projects" class="btn-premium">View Technical Projects</a>
+                    <a href="gallery.html" class="btn-premium">
+                        <i data-feather="music"></i> Listen to My Works
+                    </a>
                 </div>
             </div>
         </section>
+
     </div>
 
     <footer><div class="credit"><p>Built with Precision by Daud Ibrahim. | &copy; 2026 <span>Aspiring SOC Analyst</span>.</p></div></footer>
@@ -300,7 +289,7 @@
         feather.replace();
         gsap.set(".scene", { autoAlpha: 1 });
 
-        // --- INTRO SCROLL ENGINE ---
+        // --- INTRO SCROLL ENGINE (LOGIC SAMA PERSIS DENGAN ABOUT.HTML) ---
         (function() {
             const lightPath = document.querySelector("#fiber-path-light");
             const pathLength = lightPath.getTotalLength();
@@ -333,13 +322,14 @@
             });
         })();
 
-        /* MODULAR SCENE ENGINE */
+        /* MODULAR SCENE ENGINE (IDENTICAL LOGIC) */
         const allScenes = gsap.utils.toArray(".scene");
         allScenes.forEach((scene, i) => {
             const content = scene.querySelector(".scene-content");
             const label = scene.querySelector(".bg-label");
             const frame = scene.querySelector(".visual-frame");
             
+            // Timeline per scene
             const sceneTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: scene,
@@ -351,10 +341,18 @@
                 }
             });
 
+            // Animasi Masuk (Fade In + Slide)
             sceneTl.from(content, { y: 60, opacity: 0, duration: 1 })
-                   .from(label, { x: i % 2 === 0 ? -100 : 100, opacity: 0, duration: 1.5 }, "-=1")
-                   .from(frame, { scale: 0.9, opacity: 0, rotation: i % 2 === 0 ? 3 : -3, duration: 1 }, "-=1.2");
+            // Logic background label (kiri/kanan gantian)
+            if(label) {
+                sceneTl.from(label, { x: i % 2 === 0 ? -100 : 100, opacity: 0, duration: 1.5 }, "-=1");
+            }
+            // Logic visual frame (rotasi gantian)
+            if(frame) {
+                sceneTl.from(frame, { scale: 0.9, opacity: 0, rotation: i % 2 === 0 ? 3 : -3, duration: 1 }, "-=1.2");
+            }
 
+            // Animasi Keluar (Kecuali scene terakhir)
             if (i < allScenes.length - 1) {
                 sceneTl.to(content, { opacity: 0, y: -40, duration: 0.5, delay: 0.3 });
             }

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "p001",
+    "title": "ScholarSeek Platform",
+    "category": "Web Development",
+    "date": "December 2025",
+    "short_description": "A comprehensive scholarship finder platform connecting students with mentors to bridge educational inequality in remote areas.",
+    "full_description": "ScholarSeek is a web-based platform designed to address the disparity in educational access in Indonesia. It allows students from remote areas to find scholarships that match their criteria and connects them with volunteer mentors. The system features a robust search engine, user dashboard, and mentorship scheduling system.",
+    "technologies": ["Laravel", "MySQL", "Bootstrap", "jQuery", "Git"],
+    "features": [
+      "Advanced Scholarship Filtering Engine",
+      "Real-time Mentor Chat System",
+      "User Application Tracking Dashboard",
+      "Admin Panel for Content Management"
+    ],
+    "images": [
+      "img/project-scholarseek.jpg",
+      "img/scholarseek-dashboard.jpg",
+      "img/scholarseek-chat.jpg"
+    ],
+    "github_url": "https://github.com/daudibrahimdev/scholarseek",
+    "demo_url": "https://scholarseek.demo"
+  },
+  {
+    "id": "p002",
+    "title": "MuseauMS",
+    "category": "Fullstack Web",
+    "date": "October 2025",
+    "short_description": "Modern Museum Management System built with MVC architecture to digitize artifact tracking and visitor ticketing.",
+    "full_description": "MuseauMS is a digital solution for museums to manage their collections and visitor interactions. It streamlines the ticketing process with QR code generation and provides curators with tools to catalog artifacts digitally. The architecture follows strict MVC patterns for maintainability.",
+    "technologies": ["PHP", "CodeIgniter 4", "PostgreSQL", "TailwindCSS"],
+    "features": [
+      "QR Code Ticketing System",
+      "Digital Artifact Cataloging",
+      "Visitor Analytics & Reporting",
+      "Role-based Access Control (RBAC)"
+    ],
+    "images": [
+      "img/project-museau.jpg",
+      "img/museau-ticket.jpg"
+    ],
+    "github_url": "https://github.com/daudibrahimdev/museaums",
+    "demo_url": ""
+  },
+  {
+    "id": "p003",
+    "title": "SecureNet Sentinel",
+    "category": "Cybersecurity",
+    "date": "February 2026",
+    "short_description": "Python-based network traffic analyzer and intrusion detection script for small enterprise networks.",
+    "full_description": "SecureNet Sentinel is a CLI tool developed to monitor network traffic in real-time. It utilizes raw sockets to capture packets and analyzes them against known signature patterns to detect potential intrusion attempts (IDS). Designed for lightweight deployment on Linux servers.",
+    "technologies": ["Python", "Scapy", "Wireshark", "Linux"],
+    "features": [
+      "Real-time Packet Sniffing",
+      "Basic Signature-based Intrusion Detection",
+      "Automated Log Generation",
+      "Email Alerting System"
+    ],
+    "images": [
+      "img/project-securenet.jpg",
+      "img/securenet-logs.jpg",
+      "img/securenet-code.jpg"
+    ],
+    "github_url": "https://github.com/daudibrahimdev/securenet",
+    "demo_url": ""
+  }
+]

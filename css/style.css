@@ -242,6 +242,26 @@ display: inline-block;
 
 #hamburger-menu { display: none; cursor: pointer; }
 
+/* --- APPEND: NAVBAR SPECIAL SEGMENT --- */
+
+/* Memberikan jarak ekstra agar separator tidak mepet */
+.navbar-nav a.nav-segment {
+  margin-left: 2.5rem; /* Lebih lebar dari margin default 1.5rem */
+  position: relative;
+}
+
+/* Membuat separator pipa menggunakan pseudo-element ::before */
+/* Kita pakai ::before agar tidak bentrok dengan hover effect ::after yang sudah ada */
+.navbar-nav a.nav-segment::before {
+  content: '|';
+  position: absolute;
+  left: -1.5rem; /* Posisi di tengah antara Projects dan Beyond Tech */
+  color: var(--text-dim); /* Menggunakan variabel warna existing agar blend */
+  font-weight: 300;
+  pointer-events: none; /* Agar tidak mengganggu klik */
+  opacity: 0.5;
+}
+
 /* Hero Section */
 
 .hero {

@@ -1,6 +1,41 @@
 /**
  * PROJECT: DAUD IBRAHIM PORTFOLIO ENGINE
- * REPAIR LOG: Fixed redeclaration errors & added safety guards.
+ */
+
+/**
+ * ALL ABOUT NAVBAR INTERACTIONS
+ */
+
+const hamburgerMenu = document.getElementById("hamburger-menu");
+const navbarNav = document.querySelector(".navbar-nav");
+
+hamburgerMenu.addEventListener("click", function() {
+    navbarNav.classList.toggle("active");
+});
+
+// Close navbar when clicking outside
+document.addEventListener("click", function(e) {
+    if (!hamburgerMenu.contains(e.target) && !navbarNav.contains(e.target)) {
+        navbarNav.classList.remove("active");
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * ALL ABOUT GSAP ANIMATIONS WITH SCROLLTRIGGER
  */
 
 // 1. Inisialisasi Utama

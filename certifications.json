@@ -1,0 +1,44 @@
+[
+  {
+    "id": "c001",
+    "title": "Cisco Certified Network Associate (CCNA)",
+    "issuer": "Cisco",
+    "date": "January 2025",
+    "category": "Networking",
+    "description": "Validated skills in network fundamentals, IP connectivity, security fundamentals, automation, and programmability. Mastered configuration of routers and switches for medium-sized networks.",
+    "skills": ["Network Topology", "IPv4/IPv6", "Security Fundamentals", "Automation"],
+    "images": [
+      "img/HCIA datacom v.1.0.png",
+      "img/cert-ccna-score.png",
+      "img/cert-ccna-badge.png"
+    ],
+    "credential_url": "https://www.cisco.com/"
+  },
+  {
+    "id": "c002",
+    "title": "Microsoft Certified: Security, Compliance, and Identity Fundamentals",
+    "issuer": "Microsoft",
+    "date": "September 2025",
+    "category": "Security",
+    "description": "Demonstrated knowledge of security, compliance, and identity concepts and related Microsoft-based cloud solutions. Achieved a score of 988/1000.",
+    "skills": ["Cloud Security", "Identity Management", "Compliance Solutions", "Azure AD"],
+    "images": [
+      "img/cert-sc900.png"
+    ],
+    "credential_url": "https://learn.microsoft.com/"
+  },
+  {
+    "id": "c003",
+    "title": "Red Hat Certified System Administrator (RHCSA)",
+    "issuer": "Red Hat",
+    "date": "February 2026",
+    "category": "System Admin",
+    "description": "Proven ability to perform core system administration skills required in Red Hat Enterprise Linux environments, including user management, storage, and security.",
+    "skills": ["Linux Command Line", "Shell Scripting", "User Management", "Systemd"],
+    "images": [
+      "img/cert-rhcsa.png",
+      "img/cert-rhcsa-exam.png"
+    ],
+    "credential_url": "https://www.redhat.com/"
+  }
+]
