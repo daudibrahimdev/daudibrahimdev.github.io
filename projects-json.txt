@@ -111,5 +111,28 @@
     ],
     "github_url": "https://github.com/daudibrahimdev/museaums",
     "demo_url": ""
+  },
+
+  {
+    "id": "p003",
+    "title": "SecureNet Sentinel",
+    "category": "Cybersecurity",
+    "date": "February 2026",
+    "short_description": "Python-based network traffic analyzer and intrusion detection script for small enterprise networks.",
+    "full_description": "SecureNet Sentinel is a CLI tool developed to monitor network traffic in real-time. It utilizes raw sockets to capture packets and analyzes them against known signature patterns to detect potential intrusion attempts (IDS). Designed for lightweight deployment on Linux servers.",
+    "technologies": ["Python", "Scapy", "Wireshark", "Linux"],
+    "features": [
+      "Real-time Packet Sniffing",
+      "Basic Signature-based Intrusion Detection",
+      "Automated Log Generation",
+      "Email Alerting System"
+    ],
+    "images": [
+      "img/project-securenet.jpg",
+      "img/securenet-logs.jpg",
+      "img/securenet-code.jpg"
+    ],
+    "github_url": "https://github.com/daudibrahimdev/securenet",
+    "demo_url": ""
   }
 ]
