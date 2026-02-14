@@ -3,39 +3,88 @@
  */
 
 /**
- * ALL ABOUT NAVBAR INTERACTIONS
+ * ALL ABOUT COMPONENT LOADER (NAVBAR & FOOTER)
+ * [FIXED]: Menghapus kode duplikat yang menyebabkan error null reference.
+ * [ADDED]: Logic navbar dipindahkan sepenuhnya ke dalam callback fetch.
  */
 
-const hamburgerMenu = document.getElementById("hamburger-menu");
-const navbarNav = document.querySelector(".navbar-nav");
+async function loadComponents() {
+    try {
+        const [navRes, footRes] = await Promise.all([
+            fetch('partials/navbar.html'),
+            fetch('partials/footer.html')
+        ]);
 
-hamburgerMenu.addEventListener("click", function() {
-    navbarNav.classList.toggle("active");
-});
+        document.getElementById('navbar-placeholder').innerHTML = await navRes.text();
+        document.getElementById('footer-placeholder').innerHTML = await footRes.text();
 
-// Close navbar when clicking outside
-document.addEventListener("click", function(e) {
-    if (!hamburgerMenu.contains(e.target) && !navbarNav.contains(e.target)) {
-        navbarNav.classList.remove("active");
+        // Re-init features setelah HTML masuk DOM
+        if (typeof feather !== 'undefined') feather.replace();
+        
+        // Panggil inisialisasi interaksi navbar
+        initNavbarInteractions(); 
+        
+        // [OPTIONAL]: Setup Active State untuk Link
+        setupActiveLink();
+
+    } catch (err) {
+        console.error("Error loading components:", err);
     }
-});
+}
 
+// Jalankan loader
+loadComponents();
 
+// Logic asli lo dimasukkan ke dalam function agar tidak error saat fetch
+function initNavbarInteractions() {
+    /**
+     * ALL ABOUT NAVBAR INTERACTIONS (ORIGINAL - MOVED HERE)
+     */
+    const hamburgerMenu = document.getElementById("hamburger-menu");
+    const navbarNav = document.querySelector(".navbar-nav");
 
+    if (hamburgerMenu && navbarNav) {
+        hamburgerMenu.addEventListener("click", function() {
+            navbarNav.classList.toggle("active");
+        });
 
+        // Close navbar when clicking outside
+        document.addEventListener("click", function(e) {
+            if (!hamburgerMenu.contains(e.target) && !navbarNav.contains(e.target)) {
+                navbarNav.classList.remove("active");
+            }
+        });
+    }
+}
 
+// [OPTIONAL]: Fungsi untuk menandai menu aktif berdasarkan URL
+function setupActiveLink() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.navbar-nav a');
+    
+    navLinks.forEach(link => {
+        // Hapus class active default
+        link.classList.remove('active');
+        link.style.color = ''; 
 
+        // Tambahkan active jika href cocok
+        if(link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+            link.style.color = 'var(--primary)';
+        }
+    });
+}
 
-
-
-
-
-
-
+/**
+ * [DELETED]: Kode Global Scope Navbar (Baris 45-59) Dihapus total
+ * Alasannya: Kode tersebut berjalan sebelum fetch selesai, menyebabkan error null
+ * dan mematikan eksekusi script selanjutnya (GSAP).
+ */
 
 
 /**
  * ALL ABOUT GSAP ANIMATIONS WITH SCROLLTRIGGER
+ * (NO CHANGES BELOW THIS LINE)
  */
 
 // 1. Inisialisasi Utama
@@ -271,7 +320,7 @@ gsap.registerPlugin(ScrollTrigger);
     }
 })();
 
-// 7. Icon Initializer
+// 7. Icon Initializer (Backup jika fetch belum jalan)
 if (typeof feather !== 'undefined') {
     feather.replace();
 }
