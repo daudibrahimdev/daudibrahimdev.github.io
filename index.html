@@ -15,6 +15,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
+    <style>
+    /* Mastiin transform performanya enteng */
+    .hero .content h1, 
+    .hero .content h1 span, 
+    .hero .content p {
+        will-change: transform, opacity;
+    }
+
+    /* Mastiin h1 nggak kepotong pas gerak ke samping */
+    .hero .content h1 {
+        overflow: visible !important;
+    }
+    
+</style>
+
     
 </head>
 <body>
@@ -32,7 +47,7 @@
       
       <main class="content">
         <h1>Daud <span>Ibrahim.</span></h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        <p>Informatics Engineering student specializing in Networking</p>
 
       </main>
       </div>
@@ -49,17 +64,10 @@
             </div>
             <div class="content">
                 <h3 class="text-gradient">The Journey</h3>
-                <p>
-                    Saya adalah lulusan <strong>SMK TKJ (Teknik Komputer Jaringan)</strong> yang kini menempuh studi S1 Teknik Informatika. 
-                    Saat ini saya berada di semester 5 dengan **IPK 3.88** dan terus mendalami dunia keamanan siber.
-                </p>
-                <p>
-                    Sebagai penerima <strong>Outstanding Student Award</strong>, saya memiliki dedikasi tinggi dalam administrasi sistem Linux 
-                    dan manajemen jaringan skala enterprise.
-                </p>
+                <p>I am an Informatics Engineering student with a networking background from SMK Cyber Media, currently focusing on the cybersecurity field and tools like SIEM and EDR. My goal is to leverage this technical foundation to become a Cybersecurity Specialist</p>
 
                 <div class="about-cta">
-                    <a href="#skills" class="btn-premium">
+                    <a href="about.html" class="btn-premium">
                         Learn More <i data-feather="plus"></i>
                     </a>
                 </div>
@@ -76,22 +84,22 @@
             <div class="skill-card glass-card">
                 <i data-feather="shield"></i>
                 <h3>Networking</h3>
-                <p>Cisco CCNA Certified Curriculum: ITN, SRWE, and ENSA.</p>
+                <p>Cisco CCNA Curriculum: ITN, SRWE, and ENSA.</p>
             </div>
             <div class="skill-card glass-card">
                 <i data-feather="terminal"></i>
                 <h3>Linux Admin</h3>
-                <p>Deep knowledge in Red Hat Enterprise Linux & Kali Linux for security auditing.</p>
+                <p>RH104 & RH124</p>
             </div>
             <div class="skill-card glass-card">
                 <i data-feather="award"></i>
                 <h3>Achievement</h3>
-                <p>Bronze Certificate Winner at <strong>Cisco NetAcad Riders</strong> competition.</p>
+                <p>Bronze Certificate at <strong>Cisco NetAcad Riders</strong> competition.</p>
             </div>
         </div>
 
         <div class="skills-cta">
-            <a href="#projects" class="btn-premium">
+            <a href="certifications.html" class="btn-premium">
                 Explore Full Roadmap <i data-feather="arrow-right"></i>
             </a>
         </div>
@@ -100,57 +108,16 @@
 
     <!-- projects section -->
     <section id="projects" class="projects container">
-        <h2 class="section-title" id="my">My <span>Projects</span></h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-img">
-                    <img src="img/scholarSeek.png" alt="ScholarSeek Platform">
-                </div>
-                <div class="project-info">
-                    <h3>ScholarSeek</h3>
-                    <div class="project-tags">
-                        <span>Laravel</span>
-                        <span>MySQL</span>
-                        <span>UI/UX</span>
-                    </div>
-                    <p>Platform pencari beasiswa dan penghubung mentor untuk mahasiswa.</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-img">
-                    <img src="img/museauMS.png" alt="MuseauMS Laravel">
-                </div>
-                <div class="project-info">
-                    <h3>MuseauMS</h3>
-                    <div class="project-tags">
-                        <span>PHP</span>
-                        <span>Laravel</span>
-                        <span>Git</span>
-                    </div>
-                    <p>Sistem manajemen museum modern yang dibangun dengan arsitektur MVC.</p>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-img">
-                    <img src="img/pustakatech.png" alt="Pustaka Tech System">
-                </div>
-                <div class="project-info">
-                    <h3>Pustaka Tech</h3>
-                    <div class="project-tags">
-                        <span>Web Dev</span>
-                        <span>Database</span>
-                    </div>
-                    <p>Sistem manajemen perpustakaan digital untuk efisiensi data buku.</p>
-                </div>
-            </div>
+    <h2 class="section-title" id="my">My <span>Projects</span></h2>
+    <div class="projects-grid" id="projects-container">
         </div>
 
-        <div class="projects-cta">
-            <a href="https://github.com/daudibrahimdev" target="_blank" class="btn-premium">
-                Explore More Projects <i data-feather="external-link"></i>
-            </a>
-        </div>
-    </section>
+    <div class="projects-cta">
+        <a href="projects.html" target="_blank" class="btn-premium">
+            Explore More Projects <i data-feather="external-link"></i>
+        </a>
+    </div>
+</section>
     <!-- projects section ends -->
 
     <!-- experience section -->
@@ -203,5 +170,52 @@
     </script>
 
     <script src="js/script.js"></script>
+
+    <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Entry Animation (Pas Page Load)
+        const entryTL = gsap.timeline({
+            defaults: { ease: "expo.out", duration: 2 }
+        });
+
+        entryTL.from(".hero .content h1", { x: -50, opacity: 0 })
+               .from(".hero .content h1 span", { x: 50, opacity: 0 }, "<")
+               .fromTo(".hero .content p", { y: 20, opacity: 0 }, { y: 0, opacity: 1 }, "-=1.5");
+
+        // 2. Parallax Scroll Animation
+        // "Daud" (h1) ke kiri, "Ibrahim" (span) ke kanan
+        const scrollTL = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",    // Mulai pas hero di paling atas
+                end: "bottom top",   // Kelar pas hero kegulung abis
+                scrub: 1.5,          // Ngikutin scroll dengan delay halus
+                invalidateOnRefresh: true
+            }
+        });
+
+        scrollTL.to(".hero .content h1", {
+            xPercent: -30,           // Geser kiri
+            opacity: 1,
+            ease: "none"
+        }, 0)
+        .to(".hero .content h1 span", {
+            xPercent: 60,            // Geser kanan (lebih jauh biar split)
+            opacity: 1,
+            ease: "none"
+        }, 0)
+        .to(".hero .content p", {
+            y: 100,                  // Parallax turun
+            opacity: 1,
+            ease: "none"
+        }, 0);
+    });
+
+
+    
+    
+</script>
 </body>
 </html>

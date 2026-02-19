@@ -76,6 +76,54 @@ function setupActiveLink() {
 }
 
 /**
+ * 1. DYNAMIC PROJECTS LOADER
+ * Ngambil data dari JSON berdasarkan ID yang lo mau.
+ */
+async function loadDynamicProjects() {
+    const container = document.getElementById('projects-container');
+    // Lo tinggal ganti ID di array ini buat nentuin project mana yang tampil
+    const featuredIds = ['p005', 'p004', 'p003']; 
+
+    try {
+        const response = await fetch('projects.json');
+        const allProjects = await response.json();
+
+        // Filter & Sort sesuai urutan featuredIds
+        const selectedProjects = featuredIds
+            .map(id => allProjects.find(p => p.id === id))
+            .filter(p => p !== undefined);
+
+        // Render HTML - STRUKTUR IDENTIK 100%
+        container.innerHTML = selectedProjects.map(project => `
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="${project.images[0]}" alt="${project.title}">
+                </div>
+                <div class="project-info">
+                    <h3>${project.title}</h3>
+                    <div class="project-tags">
+                        ${project.technologies.map(tech => `<span>${tech}</span>`).join('')}
+                    </div>
+                    <p>${project.short_description}</p>
+                </div>
+            </div>
+        `).join('');
+
+        // INIT ANIMASI: Manggil fungsi animasi project setelah kartu muncul di DOM
+        initProjectAnimations();
+        
+        // Refresh ScrollTrigger biar dia ngitung ulang posisi kartu baru
+        ScrollTrigger.refresh();
+
+    } catch (err) {
+        console.error("Gagal load projects:", err);
+    }
+}
+
+// Jalankan loader project
+loadDynamicProjects();
+
+/**
  * [DELETED]: Kode Global Scope Navbar (Baris 45-59) Dihapus total
  * Alasannya: Kode tersebut berjalan sebelum fetch selesai, menyebabkan error null
  * dan mematikan eksekusi script selanjutnya (GSAP).
@@ -205,8 +253,12 @@ gsap.registerPlugin(ScrollTrigger);
     }
 })();
 
-// 5. ANIMASI PROJECTS SHOWCASE (Layered Parallax)
-(function() {
+/**
+ * 5. ANIMASI PROJECTS SHOWCASE (Layered Parallax)
+ * [MODIFIED]: Gue bungkus ke fungsi supaya bisa jalan buat konten dinamis.
+ * LOGIC GAK ADA YANG BERUBAH.
+ */
+function initProjectAnimations() {
     const projectCards = gsap.utils.toArray(".project-card");
     if (projectCards.length > 0) {
         projectCards.forEach((card, i) => {
@@ -256,7 +308,7 @@ gsap.registerPlugin(ScrollTrigger);
             }
         });
     }
-})();
+}
 
 // 6. PROJECTS FINAL TOUCH (Freeze Title & Projects CTA)
 (function() {

@@ -15,6 +15,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
+    <style>
+    /* Preparation buat animasi hero */
+    .hero .content h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.2em;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .hero .content h1 span {
+        display: inline-block;
+    }
+
+    .hero .content p {
+        opacity: 0; /* Mencegah flash pas page load */
+        will-change: transform, opacity, filter;
+    }
+</style>
+
     
 </head>
 <body>
@@ -32,7 +53,7 @@
       
       <main class="content">
         <h1>Daud <span>Ibrahim.</span></h1>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+        <p>Informatics Engineering student specializing in Networking</p>
 
       </main>
       </div>
@@ -49,14 +70,7 @@
             </div>
             <div class="content">
                 <h3 class="text-gradient">The Journey</h3>
-                <p>
-                    Saya adalah lulusan <strong>SMK TKJ (Teknik Komputer Jaringan)</strong> yang kini menempuh studi S1 Teknik Informatika. 
-                    Saat ini saya berada di semester 5 dengan **IPK 3.88** dan terus mendalami dunia keamanan siber.
-                </p>
-                <p>
-                    Sebagai penerima <strong>Outstanding Student Award</strong>, saya memiliki dedikasi tinggi dalam administrasi sistem Linux 
-                    dan manajemen jaringan skala enterprise.
-                </p>
+                <p>I am an Informatics Engineering student with a networking background from SMK Cyber Media, currently focusing on the cybersecurity field and tools like SIEM and EDR. My goal is to leverage this technical foundation to become a Cybersecurity Specialist</p>
 
                 <div class="about-cta">
                     <a href="#skills" class="btn-premium">
@@ -203,5 +217,40 @@
     </script>
 
     <script src="js/script.js"></script>
+
+    <script>
+    // Cinematic Hero Animation Logic
+    document.addEventListener("DOMContentLoaded", () => {
+        const tl = gsap.timeline({ 
+            defaults: { ease: "expo.out", duration: 2 } 
+        });
+
+        // H1: Daud slide kiri, Ibrahim slide kanan
+        tl.from(".hero .content h1", {
+            x: -80,
+            opacity: 0,
+        })
+        .from(".hero .content h1 span", {
+            x: 160,
+            opacity: 0,
+        }, "<") // Start barengan biar smooth
+
+        // Tagline: Smooth upward + blur reveal
+        .fromTo(".hero .content p", 
+            { 
+                y: 40, 
+                opacity: 0, 
+                filter: "blur(12px)" 
+            }, 
+            { 
+                y: 0, 
+                opacity: 1, 
+                filter: "blur(0px)",
+                duration: 2.5 
+            }, 
+            "-=1.5" // Mulai pas H1 hampir kelar
+        );
+    });
+</script>
 </body>
 </html>

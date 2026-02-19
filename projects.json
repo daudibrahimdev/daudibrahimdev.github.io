@@ -33,7 +33,7 @@
     "date": "February 2026",
     "short_description": "A digital library management system for tracking and organizing digital books and resources.",
     "full_description": "Pustaka Digital Library System is a web-based application designed to help libraries manage their digital collections. It allows librarians to catalog books, track borrowing history, and provide users with an easy-to-use interface for searching and accessing digital resources.",
-    "technologies": ["PHP", "MySQL", "Bootstrap", "jQuery", "Git"],
+    "technologies": ["Laravel", "MySQL", "Bootstrap", "jQuery", "Git"],
     "features": [
       "Real-time Packet Sniffing",
       "Basic Signature-based Intrusion Detection",
@@ -90,7 +90,7 @@
     "date": "October 2025",
     "short_description": "Modern Museum Management System built with MVC architecture to digitize artifact tracking and visitor ticketing.",
     "full_description": "MuseauMS is a digital solution for museums to manage their collections and visitor interactions. It streamlines the ticketing process with QR code generation and provides curators with tools to catalog artifacts digitally. The architecture follows strict MVC patterns for maintainability.",
-    "technologies": ["PHP", "CodeIgniter 4", "PostgreSQL", "TailwindCSS"],
+    "technologies": ["Laravel", "MySQL", "TailwindCSS"],
     "features": [
       "QR Code Ticketing System",
       "Digital Artifact Cataloging",

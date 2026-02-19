@@ -1,253 +1,326 @@
-// Daftarkan plugin
+/**
+ * PROJECT: DAUD IBRAHIM PORTFOLIO ENGINE
+ */
+
+/**
+ * ALL ABOUT COMPONENT LOADER (NAVBAR & FOOTER)
+ * [FIXED]: Menghapus kode duplikat yang menyebabkan error null reference.
+ * [ADDED]: Logic navbar dipindahkan sepenuhnya ke dalam callback fetch.
+ */
+
+async function loadComponents() {
+    try {
+        const [navRes, footRes] = await Promise.all([
+            fetch('partials/navbar.html'),
+            fetch('partials/footer.html')
+        ]);
+
+        document.getElementById('navbar-placeholder').innerHTML = await navRes.text();
+        document.getElementById('footer-placeholder').innerHTML = await footRes.text();
+
+        // Re-init features setelah HTML masuk DOM
+        if (typeof feather !== 'undefined') feather.replace();
+        
+        // Panggil inisialisasi interaksi navbar
+        initNavbarInteractions(); 
+        
+        // [OPTIONAL]: Setup Active State untuk Link
+        setupActiveLink();
+
+    } catch (err) {
+        console.error("Error loading components:", err);
+    }
+}
+
+// Jalankan loader
+loadComponents();
+
+// Logic asli lo dimasukkan ke dalam function agar tidak error saat fetch
+function initNavbarInteractions() {
+    /**
+     * ALL ABOUT NAVBAR INTERACTIONS (ORIGINAL - MOVED HERE)
+     */
+    const hamburgerMenu = document.getElementById("hamburger-menu");
+    const navbarNav = document.querySelector(".navbar-nav");
+
+    if (hamburgerMenu && navbarNav) {
+        hamburgerMenu.addEventListener("click", function() {
+            navbarNav.classList.toggle("active");
+        });
+
+        // Close navbar when clicking outside
+        document.addEventListener("click", function(e) {
+            if (!hamburgerMenu.contains(e.target) && !navbarNav.contains(e.target)) {
+                navbarNav.classList.remove("active");
+            }
+        });
+    }
+}
+
+// [OPTIONAL]: Fungsi untuk menandai menu aktif berdasarkan URL
+function setupActiveLink() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.navbar-nav a');
+    
+    navLinks.forEach(link => {
+        // Hapus class active default
+        link.classList.remove('active');
+        link.style.color = ''; 
+
+        // Tambahkan active jika href cocok
+        if(link.getAttribute('href') === currentPath) {
+            link.classList.add('active');
+            link.style.color = 'var(--primary)';
+        }
+    });
+}
+
+/**
+ * [DELETED]: Kode Global Scope Navbar (Baris 45-59) Dihapus total
+ * Alasannya: Kode tersebut berjalan sebelum fetch selesai, menyebabkan error null
+ * dan mematikan eksekusi script selanjutnya (GSAP).
+ */
+
+
+/**
+ * ALL ABOUT GSAP ANIMATIONS WITH SCROLLTRIGGER
+ * (NO CHANGES BELOW THIS LINE)
+ */
+
+// 1. Inisialisasi Utama
 gsap.registerPlugin(ScrollTrigger);
 
-// Bungkus dalam fungsi agar variabel 'cards' tidak bentrok dengan script lain
+// 2. ANIMASI TECHNICAL ARSENAL (3D Entry)
 (function() {
     const arsenalCards = gsap.utils.toArray(".skill-card");
-
-    arsenalCards.forEach((card, i) => {
-        const depth = (i + 1) * 80; 
-
-        gsap.fromTo(card, 
-            {
-                opacity: 0,
-                y: depth,
-                rotateX: -25,
-                scale: 0.85,
-                z: -100
-            }, 
-            {
-                opacity: 1,
-                y: 0,
-                rotateX: 0,
-                scale: 1,
-                z: 0,
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 150%",
-                    end: "top 0%",
-                    scrub: 1
+    if (arsenalCards.length > 0) {
+        arsenalCards.forEach((card, i) => {
+            const depth = (i + 1) * 80; 
+            gsap.fromTo(card, 
+                {
+                    opacity: 0,
+                    y: depth,
+                    rotateX: -25,
+                    scale: 0.85,
+                    z: -100
+                }, 
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 0,
+                    scale: 1,
+                    z: 0,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 150%",
+                        end: "top 0%",
+                        scrub: 1
+                    }
                 }
-            }
-        );
-    });
+            );
+        });
+    }
 })();
 
-// --- ANIMASI SKILLS SECTION ENHANCEMENT ---
+// 3. ANIMASI SKILLS SECTION (Title Parallax & CTA Reveal)
 (function() {
-    // 1. Parallax Judul Section
+    // Parallax Title
     gsap.from(".skills .section-title", {
-        y: 100, // Gerak lebih jauh untuk efek parallax yang terasa
+        y: 100,
         opacity: 0,
         scrollTrigger: {
             trigger: ".skills",
             start: "top 70%",
             end: "top 10%",
-            scrub: 1 // Kecepatan beda dengan kartu (kartu pake scrub 2)
+            scrub: 1
         }
     });
 
-    // 2. Reveal CTA Button
-    const ctaBtn = document.querySelector(".skills-cta");
-    
-    gsap.to(ctaBtn, {
-        opacity: 1,
-        y: -20,
-        scrollTrigger: {
-            trigger: ".skills-container",
-            start: "bottom 70%",
-            end: "bottom 70%",
-            scrub: 1.5
+    // Reveal Skills CTA
+    const sCtaBtn = document.querySelector(".skills-cta");
+    if (sCtaBtn) {
+        gsap.to(sCtaBtn, {
+            opacity: 1,
+            y: -20,
+            scrollTrigger: {
+                trigger: ".skills-container",
+                start: "bottom 70%",
+                end: "bottom 70%",
+                scrub: 1.5
+            }
+        });
+
+        const sBtnLink = sCtaBtn.querySelector("a");
+        if (sBtnLink) {
+            sBtnLink.addEventListener("mouseenter", () => {
+                gsap.to(sBtnLink, { scale: 1.05, duration: 0.4, ease: "power2.out" });
+                gsap.to(sBtnLink.querySelector("i"), { x: 5, duration: 0.3 });
+            });
+            sBtnLink.addEventListener("mouseleave", () => {
+                gsap.to(sBtnLink, { scale: 1, duration: 0.4, ease: "power2.inOut" });
+                gsap.to(sBtnLink.querySelector("i"), { x: 0, duration: 0.3 });
+            });
         }
-    });
-
-    // 3. Micro-interaction Hover (Manual GSAP untuk kontrol lebih halus)
-    const btnLink = ctaBtn.querySelector("a");
-    
-    btnLink.addEventListener("mouseenter", () => {
-        gsap.to(btnLink, { 
-            scale: 1.05, 
-            duration: 0.4, 
-            ease: "power2.out" 
-        });
-        gsap.to(btnLink.querySelector("i"), { 
-            x: 5, 
-            duration: 0.3 
-        });
-    });
-
-    btnLink.addEventListener("mouseleave", () => {
-        gsap.to(btnLink, { 
-            scale: 1, 
-            duration: 0.4, 
-            ease: "power2.inOut" 
-        });
-        gsap.to(btnLink.querySelector("i"), { 
-            x: 0, 
-            duration: 0.3 
-        });
-    });
+    }
 })();
 
-// --- ANIMASI ABOUT SECTION ---
+// 4. ANIMASI ABOUT SECTION (The Journey Timeline)
 (function() {
-    const aboutTl = gsap.timeline({
-        scrollTrigger: {
-            trigger: "#about",
-            start: "top 40%", // Animasi mulai saat bagian atas section masuk 90% layar
-            end: "top 10%",   // Animasi selesai saat section naik ke 30% layar
-            scrub: 1.5,       // Gerakan halus mengikuti scroll
-        }
-    });
+    const aboutSection = document.querySelector("#about");
+    if (aboutSection) {
+        const aboutTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 40%",
+                end: "top 10%",
+                scrub: 1.5,
+            }
+        });
 
-    // 1. Judul muncul dari atas (y: -50)
-    aboutTl.from("#about .section-title", {
-        y: -50,
-        opacity: 0,
-        duration: 2,
-        ease: "power2.out"
-    })
-    // 2. Gambar muncul dari kiri (x: -150)
-    .from(".about-img", {
-        x: -150,
-        opacity: 0,
-        duration: 2.5,
-        ease: "power2.out"
-    }, "-=0.8") // Mulai 0.8 detik lebih awal sebelum judul selesai
-    // 3. Konten teks muncul dari kanan (x: 150) dengan stagger
-    .from(".about .content h3, .about .content p", {
-        x: 150,
-        opacity: 0,
-        duration: 2.2,
-        stagger: 0.2, // Jeda antar baris teks agar muncul bergantian
-        ease: "power2.out"
-    }, "-=1.2"); // Mulai bersamaan dengan animasi gambar untuk kesan "cinematic"
+        aboutTl.from("#about .section-title", {
+            y: -50,
+            opacity: 0,
+            duration: 2,
+            ease: "power2.out"
+        })
+        .from(".about-img", {
+            x: -150,
+            opacity: 0,
+            duration: 2.5,
+            ease: "power2.out"
+        }, "-=0.8")
+        .from(".about .content h3, .about .content p", {
+            x: 150,
+            opacity: 0,
+            duration: 2.2,
+            stagger: 0.2,
+            ease: "power2.out"
+        }, "-=1.2")
+        .from(".about-cta", { // Fade-in CTA About
+            y: 20,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out"
+        }, "-=1");
+    }
 })();
 
-// --- ANIMASI PROJECTS SHOWCASE ENGINE ---
+// 5. ANIMASI PROJECTS SHOWCASE (Layered Parallax)
 (function() {
-    const projects = gsap.utils.toArray(".project-card");
+    const projectCards = gsap.utils.toArray(".project-card");
+    if (projectCards.length > 0) {
+        projectCards.forEach((card, i) => {
+            const pImg = card.querySelector(".project-img img");
+            const pInfo = card.querySelector(".project-info");
+            const rotAngle = i % 2 === 0 ? 5 : -5;
 
-    projects.forEach((card, i) => {
-        const projectImg = card.querySelector(".project-img img");
-        const projectInfo = card.querySelector(".project-info");
-        
-        // Tentukan arah rotasi selang-seling biar gak bosenin
-        const rotationAngle = i % 2 === 0 ? 5 : -5;
-
-        // 1. Animasi Kartu Utama (Stacked Entrance)
-        gsap.fromTo(card, 
-            {
-                opacity: 0,
-                y: 250,
-                rotateX: -15,
-                rotateZ: rotationAngle,
-                scale: 0.8
-            }, 
-            {
-                opacity: 1,
-                y: 0,
-                rotateX: 0,
-                rotateZ: 0,
-                scale: 1,
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 95%",
-                    end: "top 40%",
-                    scrub: 1.2
+            // Entrance Card
+            gsap.fromTo(card, 
+                { opacity: 0, y: 250, rotateX: -15, rotateZ: rotAngle, scale: 0.8 }, 
+                {
+                    opacity: 1, y: 0, rotateX: 0, rotateZ: 0, scale: 1,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 95%",
+                        end: "top 40%",
+                        scrub: 1.2
+                    }
                 }
-            }
-        );
+            );
 
-        // 2. Parallax Internal Gambar (Inner Motion)
-        // Gambar akan bergerak berlawanan dengan arah scroll
-        gsap.to(projectImg, {
-            y: "15%",
-            scrollTrigger: {
-                trigger: card,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true
+            // Inner Image Parallax
+            if (pImg) {
+                gsap.to(pImg, {
+                    y: "15%",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true
+                    }
+                });
+            }
+
+            // Info Contrast Motion
+            if (pInfo) {
+                gsap.from(pInfo, {
+                    y: 40,
+                    opacity: 0.5,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 80%",
+                        end: "top 50%",
+                        scrub: 2
+                    }
+                });
             }
         });
-
-        // 3. Kontras Motion Teks (Teks naik lebih lambat dari kartu)
-        gsap.from(projectInfo, {
-            y: 40,
-            opacity: 0.5,
-            scrollTrigger: {
-                trigger: card,
-                start: "top 80%",
-                end: "top 50%",
-                scrub: 2
-            }
-        });
-    });
+    }
 })();
 
-
-// --- ANIMASI PROJECTS ADVANCED ENHANCEMENT ---
+// 6. PROJECTS FINAL TOUCH (Freeze Title & Projects CTA)
 (function() {
-    // 1. Scroll-Follow & Freeze Title
-    // Teks akan mengikuti scroll (parallax) lalu mengunci (freeze) di posisinya
+    // Title Follow & Freeze
     gsap.fromTo("#projects .section-title", 
-        { 
-            y: -150, // Mulai dari atas viewport
-            opacity: 0 
-        }, 
+        { y: -150, opacity: 0 }, 
         {
-            y: 0, // Bergerak ke posisi asli
+            y: 0,
             opacity: 1,
             ease: "none",
             scrollTrigger: {
                 trigger: "#projects",
-                start: "top bottom", // Mulai saat section masuk layar
-                end: "top 30%",      // Teks berhenti (freeze) saat section mencapai 15% dari atas
-                scrub: 1,            // Mengikuti gerakan scroll
-                // pin: true,        // Aktifkan ini jika ingin teks benar-benar terpaku di layar
+                start: "top bottom",
+                end: "top 30%",
+                scrub: 1,
             }
         }
     );
 
-    // 2. Reveal CTA Button
-    const projectsCta = document.querySelector(".projects-cta");
-    
-    gsap.fromTo(projectsCta, 
-        { opacity: 0, y: 50 },
-        {
-            opacity: 1,
-            y: 0,
-            scrollTrigger: {
-                trigger: ".projects-grid",
-                start: "bottom 90%", // Muncul setelah user melihat project terakhir
-                end: "bottom 70%",
-                scrub: 1
+    // Reveal Projects CTA
+    const pCta = document.querySelector(".projects-cta");
+    if (pCta) {
+        gsap.fromTo(pCta, 
+            { opacity: 0, y: 50 },
+            {
+                opacity: 1,
+                y: 0,
+                scrollTrigger: {
+                    trigger: ".projects-grid",
+                    start: "bottom 90%",
+                    end: "bottom 70%",
+                    scrub: 1
+                }
             }
+        );
+
+        const pBtnLink = pCta.querySelector("a");
+        if (pBtnLink) {
+            pBtnLink.addEventListener("mouseenter", () => {
+                gsap.to(pBtnLink, { 
+                    scale: 1.05, 
+                    backgroundColor: "rgba(0, 242, 255, 0.1)",
+                    borderColor: "var(--primary)",
+                    boxShadow: "0 0 20px var(--primary-glow)",
+                    duration: 0.4 
+                });
+                gsap.to(pBtnLink.querySelector("i"), { rotate: 45, x: 3, duration: 0.3 });
+            });
+
+            pBtnLink.addEventListener("mouseleave", () => {
+                gsap.to(pBtnLink, { 
+                    scale: 1, 
+                    backgroundColor: "rgba(255, 255, 255, 0.05)",
+                    borderColor: "var(--glass-border)",
+                    boxShadow: "none",
+                    duration: 0.4 
+                });
+                gsap.to(pBtnLink.querySelector("i"), { rotate: 0, x: 0, duration: 0.3 });
+            });
         }
-    );
-
-    // 3. Micro-interaction Hover (Consistent with Certifications)
-    const ctaLink = projectsCta.querySelector("a");
-    
-    ctaLink.addEventListener("mouseenter", () => {
-        gsap.to(ctaLink, { 
-            scale: 1.05, 
-            backgroundColor: "rgba(0, 242, 255, 0.1)",
-            borderColor: "var(--primary)",
-            boxShadow: "0 0 20px var(--primary-glow)",
-            duration: 0.4 
-        });
-        gsap.to(ctaLink.querySelector("i"), { rotate: 45, x: 3, duration: 0.3 });
-    });
-
-    ctaLink.addEventListener("mouseleave", () => {
-        gsap.to(ctaLink, { 
-            scale: 1, 
-            backgroundColor: "rgba(255, 255, 255, 0.05)",
-            borderColor: "var(--glass-border)",
-            boxShadow: "none",
-            duration: 0.4 
-        });
-        gsap.to(ctaLink.querySelector("i"), { rotate: 0, x: 0, duration: 0.3 });
-    });
+    }
 })();
+
+// 7. Icon Initializer (Backup jika fetch belum jalan)
+if (typeof feather !== 'undefined') {
+    feather.replace();
+}

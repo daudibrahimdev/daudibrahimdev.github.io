@@ -1,38 +1,132 @@
 [
+
   {
-    "id": "g001",
-    "title": "Rachmaninoff: Prelude in G Minor",
-    "date": "January 2026",
-    "category": "Piano Performance",
-    "description": "A live performance recording from the university auditorium. This piece challenges the dynamic range and rhythmic precision. I spent 3 months perfecting the middle section's lyrical phrasing against the marching rhythm.",
-    "media_type": "youtube",
-    "media_url": "https://www.youtube.com/embed/dQw4w9WgXcQ", 
-    "thumbnail": "https://images.unsplash.com/photo-1552422535-c4581dadc6f5?q=80&w=2070&auto=format&fit=crop",
+    "id": "g002",
+    "title": "Childhood Memory",
+    "date": "Old days",
+    "category": "Personal",
+    "description": "This was the moment when I was still into drums. Just an old memory that feels nostalgic.",
+    "media_type": "image",
+    "media_url": "gallery/littleme.jpeg",
+    "thumbnail": "gallery/littleme.jpeg",
     "images": []
   },
   {
-    "id": "g002",
-    "title": "Regional Chess Championship 2025",
-    "date": "November 2025",
+    "id": "g005",
+    "title": "Chess tournaments 2021 Highlights",
+    "date": "January 2026",
     "category": "Chess",
-    "description": "Highlights from the semi-final match. It was a rigorous 4-hour game utilizing the London System. Although it ended in a draw, the positional play was one of my best performances.",
+    "description": "Highlights from the 2021 regional chess tournaments",
     "media_type": "image",
-    "media_url": "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=2071&auto=format&fit=crop",
-    "thumbnail": "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=2071&auto=format&fit=crop",
+    "media_url": "gallery/chess1.jpeg",
+    "thumbnail": "gallery/chess1.jpeg",
     "images": [
-      "https://images.unsplash.com/photo-1586165368502-1bad197a6461?q=80&w=2158&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1580541832626-2a7131ee809f?q=80&w=2070&auto=format&fit=crop"
+      "gallery/chess1.jpeg",
+      "gallery/chess2.jpeg"
     ]
   },
   {
-    "id": "g003",
-    "title": "Cyber Security Lab Setup Timelapse",
-    "date": "December 2025",
-    "category": "Tech Setup",
-    "description": "A short cinematic sequence showing the cable management and server rack installation for my home lab project. This setup runs Proxmox VE for my penetration testing environment.",
-    "media_type": "mp4",
-    "media_url": "assets/videos/setup-timelapse.mp4",
-    "thumbnail": "https://images.unsplash.com/photo-1558494949-efc535b5c4c1?q=80&w=2070&auto=format&fit=crop",
-    "images": []
+    "id": "g006",
+    "title": "Highschool Basketball Team & Tournaments 2022 Highlights",
+    "date": "January 2026",
+    "category": "Sports",
+    "description": "Highlights from the 2022 highschool basketball team",
+    "media_type": "image",
+    "media_url": "gallery/basketball1.jpeg",
+    "thumbnail": "gallery/basketball1.jpeg",
+    "images": [
+      "gallery/basketball1.jpeg",
+      "gallery/basketball5.jpeg",
+      "gallery/basketball6.jpeg",
+      "gallery/basketball2.jpeg",
+      "gallery/basketball3.jpeg",
+      "gallery/basketball4.jpeg"
+    ]
+  },
+  {
+    "id": "g007",
+    "title": "Highschool Highlights",
+    "date": "January 2026",
+    "category": "Sports",
+    "description": "Highlights from the 2022 highschool basketball team",
+    "media_type": "image",
+    "media_url": "gallery/HS1.jpeg",
+    "thumbnail": "gallery/HS1.jpeg",
+    "images": [
+      "gallery/HS1.jpeg",
+      "gallery/HS2.jpeg",
+      "gallery/HS3.jpeg",
+      "gallery/HS4.jpeg",
+      "gallery/HS5.jpeg",
+      "gallery/HS6.jpeg"
+    ]
+  },
+  {
+    "id": "g008",
+    "title": "Internship Highlights",
+    "date": "January 2026",
+    "category": "Internship",
+    "description": "Highlights from my internship experience as a maintenance, involving server room maintenance, network troubleshooting, and basic enterprise-level trouble shooting.",
+    "media_type": "image",
+    "media_url": "gallery/internship2.jpeg",
+    "thumbnail": "gallery/internship2.jpeg",
+    "images": [
+      "gallery/internship1.jpeg",
+      "gallery/internship2.jpeg",
+      "gallery/internship3.jpeg",
+      "gallery/internship4.jpeg",
+      "gallery/internship5.jpeg",
+      "gallery/internship6.jpeg",
+      "gallery/internship7.jpeg",
+      "gallery/internship8.jpeg",
+      "gallery/internship9.jpeg",
+      "gallery/internship10.jpeg"
+    ]
+  },
+  {
+    "id": "g009",
+    "title": "College Highlights",
+    "date": "January 2026",
+    "category": "College",
+    "description": "Highlights from my college experience.",
+    "media_type": "image",
+    "media_url": "gallery/college1.jpeg",
+    "thumbnail": "gallery/college1.jpeg",
+    "images": [
+      "gallery/college1.jpeg",
+      "gallery/college2.jpeg",
+      "gallery/college33.jpeg",
+      "gallery/college3.jpeg",
+      "gallery/college4.jpeg",
+      "gallery/college5.jpeg",
+      "gallery/college6.jpeg",
+      "gallery/college7.jpeg",
+      "gallery/college8.jpeg",
+      "gallery/college9.jpeg",
+      "gallery/college10.jpeg",
+      "gallery/college11.jpeg"
+    ]
+  },
+  {
+    "id": "g010",
+    "title": "Organizational highlights",
+    "date": "January 2026",
+    "category": "College",
+    "description": "Moments from my BEM organizational experience and other college activities",
+    "media_type": "image",
+    "media_url": "gallery/org1.jpeg",
+    "thumbnail": "gallery/org1.jpeg",
+    "images": [
+      "gallery/org1.jpeg",
+      "gallery/org8.jpeg",
+      "gallery/org99.jpeg",
+      "gallery/org2.jpeg",
+      "gallery/org3.jpeg",
+      "gallery/org4.jpeg",
+      "gallery/org5.jpeg", 
+      "gallery/org6.jpeg",
+      "gallery/org7.jpeg"
+    ]
   }
+
 ]
